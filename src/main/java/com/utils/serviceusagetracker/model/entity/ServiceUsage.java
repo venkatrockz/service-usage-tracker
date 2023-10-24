@@ -1,11 +1,14 @@
 package com.utils.serviceusagetracker.model.entity;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
 
+@Data
 @Entity(name = "SERVICE_USAGE")
 public class ServiceUsage {
 

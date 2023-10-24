@@ -28,6 +28,7 @@ public class ServiceUsageTrackerService {
         Date nextDate = previousDate(date);
         List<String> clients = repository.getDistinctByClientId(nextDate, date);
         List<ServiceUsageCountsDTO> serviceUsageCounts = new ArrayList<>();
+        List<ServiceUsageCountsDTO> response = new ArrayList<>();
         for (String client : clients) {
             serviceUsageCounts = repository.getDistinctByClientId(client, nextDate, date);
             for (ServiceUsageCountsDTO countsDTO : serviceUsageCounts) {
@@ -38,9 +39,10 @@ public class ServiceUsageTrackerService {
                 aggregator.setEventId(countsDTO.getEventId());
                 aggregator.setEventDate(date);
                 aggregatorStore.save(aggregator);
+                response.add(countsDTO);
             }
         }
-        return serviceUsageCounts;
+        return response;
     }
 
     public List<ServiceUsageCountsReportDTO> getClientUsageReportByDate(Date date) {

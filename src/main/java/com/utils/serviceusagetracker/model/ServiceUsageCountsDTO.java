@@ -8,5 +8,6 @@ import lombok.Data;
 public class ServiceUsageCountsDTO {
 
     private String eventId;
+    private String clientId;
     private Long usageCount;
 }
